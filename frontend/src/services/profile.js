@@ -2,7 +2,7 @@
 // Más adelante pueden venir del backend (GET /api/profile) y editarse desde el panel.
 export const profile = {
   name: 'Mauricio Vera',
-  role: 'Desarrollador full-stack · React + Node.js',
+  role: 'Desarrollador full-stack',
   tagline: 'Una línea que diga qué construís y para quién.',
   bio: 'Contá quién sos en dos o tres líneas: cómo llegaste al desarrollo, qué te gusta construir y qué estás buscando ahora.',
   location: 'Mendoza, Argentina',

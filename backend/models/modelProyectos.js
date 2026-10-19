@@ -33,10 +33,10 @@ function toProject(row) {
 
         featured: Boolean(row.featured),
         tech: row.tech ? JSON.parse(row.tech) : [],
-    
+
         status: row.status,
         cover: row.cover_url,
-        
+
     }
 
 
@@ -76,18 +76,18 @@ class ModelProyectos {
                     project.slug,
                     project.summary,
                     project.description,
-                    project.repo_url,
-                    project.demo_url,
+                    project.repoUrl,
+                    project.demoUrl,
                     project.featured ? 1 : 0,
                     project.status,
-                    project.sort_order ?? 0,
+                    project.order ?? 0,
                 ],
             });
 
             const projectId = Number(result.lastInsertRowid);
 
 
-            linkTechnologies(tx, projectId, project.tech || []);
+            await linkTechnologies(tx, projectId, project.tech || []);
 
             await tx.commit();
             return projectId;
@@ -196,10 +196,10 @@ class ModelProyectos {
 
             await tx.commit()
             return true;
-        }catch(err){
+        } catch (err) {
             await tx.rollback();
             throw err
-        }finally{
+        } finally {
             tx.close();
         }
     }
