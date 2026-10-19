@@ -1,0 +1,32 @@
+# Dependencias
+node_modules
+
+# Builds
+dist
+dist-ssr
+
+# Caché de Vite (se regenera sola)
+.vite
+
+# Variables de entorno (claves, tokens: NUNCA se suben)
+.env
+.env.*
+!.env.example
+*.local
+
+# Base de datos local de Turso/SQLite (file:local.db)
+*.db
+*.db-shm
+*.db-wal
+
+# Subidas locales (si alguna vez usás disco en vez de Cloudinary)
+uploads/
+
+# Editor y sistema
+.vscode/*
+!.vscode/extensions.json
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log

@@ -1,0 +1,10 @@
+{
+  "name": "portafolio",
+  "private": true,
+  "scripts": {
+    "dev": "pnpm -r --parallel dev",
+    "dev:front": "pnpm --filter frontend dev",
+    "dev:back": "pnpm --filter backend dev",
+    "build": "pnpm --filter frontend build"
+  }
+}

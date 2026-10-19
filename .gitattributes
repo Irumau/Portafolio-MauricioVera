@@ -1,0 +1,13 @@
+# Guarda todos los archivos de texto con finales de línea LF en el repositorio,
+# sin importar si trabajás en Windows, Mac o Linux.
+* text=auto eol=lf
+
+# Archivos binarios: Git no los toca
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.avif binary
+*.ico binary
+*.woff binary
+*.woff2 binary

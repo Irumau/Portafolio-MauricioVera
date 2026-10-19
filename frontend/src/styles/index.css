@@ -1,0 +1,41 @@
+@import "tailwindcss";
+@config "../../tailwind.config.js";
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-night text-ice font-sans antialiased;
+  }
+  ::selection {
+    @apply bg-accent text-night;
+  }
+  :focus-visible {
+    outline: 3px solid var(--color-ice, #EAF6FF);
+    outline-offset: 3px;
+  }
+}
+
+/* Formas diagonales reutilizables (clip-path no se puede expresar con clases de Tailwind) */
+@utility slant {
+  clip-path: polygon(12px 0, 100% 0, calc(100% - 12px) 100%, 0 100%);
+}
+@utility slant-right {
+  clip-path: polygon(0 0, 100% 0, calc(100% - 18px) 100%, 0 100%);
+}
+@utility slant-card {
+  clip-path: polygon(0 0, 100% 0, calc(100% - 40px) 100%, 0 100%);
+}
+@utility slant-band {
+  clip-path: polygon(22% 0, 100% 0, 78% 100%, 0 100%);
+}
+@utility slant-section {
+  clip-path: polygon(0 48px, 100% 0, 100% calc(100% - 48px), 0 100%);
+}
+@utility stripes {
+  background: repeating-linear-gradient(-60deg, #12295A 0 18px, #0F2350 18px 36px);
+}
+@utility stripes-light {
+  background: repeating-linear-gradient(-60deg, #D6E6F7 0 14px, #C6DAF0 14px 28px);
+}
