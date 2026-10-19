@@ -10,7 +10,7 @@ export default function useProjects() {
     setState((prev) => ({ ...prev, status: 'loading', error: null }))
     try {
       const projects = await getProjects({ signal })
-      setState({ status: 'success', projects, error: null })
+      setState({ status: 'success', projects: Array.isArray(projects) ? projects : [], error: null })
     } catch (error) {
       if (error.name === 'AbortError') return
       setState({ status: 'error', projects: [], error })

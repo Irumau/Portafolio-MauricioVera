@@ -63,6 +63,15 @@ export async function request(path, { signal, headers, body, auth = false, ...op
 
   const json = await response.json().catch(() => null)
 
+  // Respuesta "ok" pero sin JSON: casi siempre significa que el pedido no llegó al backend
+  // (por ejemplo, VITE_API_URL mal configurada y el hosting devolvió el index.html).
+  if (response.ok && json === null) {
+    throw new ApiError(
+      `La respuesta de ${BASE_URL}${path} no es JSON. Revisá que VITE_API_URL apunte al backend.`,
+      response.status,
+    )
+  }
+
   if (!response.ok) {
     if (response.status === 401 && auth) onUnauthorized?.()
     throw new ApiError(

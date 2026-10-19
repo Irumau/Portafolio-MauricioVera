@@ -28,13 +28,8 @@ export default function SocialLinks() {
     <PageTransition className="min-h-screen">
       <div className="mx-auto flex max-w-7xl flex-col gap-20 px-4 pb-24 pt-16 sm:px-6">
         {/* Sobre mí */}
-        <section aria-labelledby="sobre-mi" className="flex flex-wrap items-center gap-14">
-          <motion.div
-            variants={fadeUp}
-            aria-hidden="true"
-            className="stripes slant-band aspect-[4/5] w-full max-w-80 flex-[0_1_320px]"
-          />
-          <div className="flex min-w-0 flex-[999_1_480px] flex-col gap-6">
+        <section aria-labelledby="sobre-mi">
+          <div className="flex min-w-0 max-w-4xl flex-col gap-6">
             <motion.h1
               id="sobre-mi"
               variants={slideFromLeft}

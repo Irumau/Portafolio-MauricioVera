@@ -20,7 +20,9 @@ if (process.env.NODE_ENV === 'production') {
 
 // ── 3. Middlewares globales (se aplican a todas las rutas) ──────────
 const corsOptions = {
-  origin: process.env.CLIENT_URL || 'http://localhost:5173', // URL de tu frontend
+  // URL de tu frontend. Se le quita la barra final: el navegador compara el origen exacto
+  // y 'https://sitio.app/' no es igual a 'https://sitio.app'.
+  origin: (process.env.CLIENT_URL || 'http://localhost:5173').replace(/\/+$/, ''),
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
   allowedHeaders: ['Content-Type', 'Authorization'],
 }

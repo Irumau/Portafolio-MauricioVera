@@ -3,11 +3,11 @@
 export const profile = {
   name: 'Mauricio Vera',
   role: 'Desarrollador full-stack',
-  tagline: 'Una línea que diga qué construís y para quién.',
-  bio: 'Contá quién sos en dos o tres líneas: cómo llegaste al desarrollo, qué te gusta construir y qué estás buscando ahora.',
+  tagline: 'Construyo aplicaciones web completas, de la interfaz a la API, para negocios que necesitan un producto rápido y fácil de mantener.',
+  bio: 'Soy desarrollador de software y estudio la Licenciatura en Desarrollo de Software. Me enfoco en crear interfaces web responsivas y aplicaciones interactivas con React, JavaScript y CSS, y en conectarlas con APIs REST que armo en Node.js. Construí desde un e-commerce completo hasta aplicaciones de escritorio y videojuegos en Java, organizando el código con el patrón MVC para que sea fácil de mantener y hacer crecer.',
   location: 'Mendoza, Argentina',
   availability: 'Disponible para proyectos',
-  languages: 'Español · Inglés',
+  languages: 'Español · Inglés C1',
   email: 'mauriciovera272@gmail.com',
   socials: [
     { label: 'GitHub', url: 'https://github.com/Irumau' },
