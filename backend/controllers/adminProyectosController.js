@@ -1,6 +1,7 @@
 import { uploadCover, deleteCover } from '../services/cloudinaryService.js'
 
 import modelProyectos from '../models/modelProyectos.js'
+import { invalidateProjectsCache } from '../services/projectsCache.js'
 
 
 const slugify = (text) =>
@@ -48,6 +49,7 @@ export const createProyecto = async (req, res) => {
         const project = { ...data, slug: slugify(data.title) };
 
         const id = await modelProyectos.create(project);
+        invalidateProjectsCache();
 
         return res.status(201).json({
             success: true,
@@ -87,6 +89,7 @@ export const deleteProyecto = async (req, res) => {
             return res.status(404).json({ message: 'No se ha encontrado el proyecto', success: false })
         }
 
+        invalidateProjectsCache()
         await deleteCover(cover.publicId)
 
         return res.status(204).send()
@@ -118,6 +121,7 @@ export const patchProyecto = async (req, res) => {
             })
         }
 
+        invalidateProjectsCache()
         const project = await modelProyectos.getById(id)
         return res.status(200).json({
             message: 'Proyecto actualizado correctamente',
@@ -152,6 +156,7 @@ export const uploadProyectoCover = async (req, res) => {
 
         const { url, publicId } = await uploadCover(req.file.buffer)
         await modelProyectos.setCover(id, url, publicId)
+        invalidateProjectsCache()
 
         // La portada anterior ya no se usa: se borra de Cloudinary
         await deleteCover(current.publicId)
@@ -175,6 +180,7 @@ export const deleteProyectoCover = async (req, res) => {
         }
 
         await modelProyectos.setCover(id, null, null)
+        invalidateProjectsCache()
         await deleteCover(current.publicId)
 
         const project = await modelProyectos.getById(id)

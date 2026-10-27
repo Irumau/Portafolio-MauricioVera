@@ -1,5 +1,10 @@
 
 import modelProyectos from '../models/modelProyectos.js'
+import { getOrLoad } from '../services/projectsCache.js'
+
+// El navegador puede reutilizar la lista 60 s sin preguntar, y hasta 5 min la muestra
+// mientras pide la versión nueva en segundo plano.
+const PUBLIC_CACHE_HEADER = 'public, max-age=60, stale-while-revalidate=300'
 
 // obtenemos todos los proyectos
 export const getProyectos = async (req, res) => {
@@ -7,7 +12,9 @@ export const getProyectos = async (req, res) => {
     try {
 
 
-        const proyectos = await modelProyectos.findAll();
+        const proyectos = await getOrLoad('all', () => modelProyectos.findAll());
+
+        res.set('Cache-Control', PUBLIC_CACHE_HEADER);
 
         return res.status(200).json({
             message: 'Proyectos obtenidos correctamente',
@@ -16,7 +23,7 @@ export const getProyectos = async (req, res) => {
         });
 
     } catch (err) {
-        console.log(err)
+        console.error(err)
         res.status(500).json({
             message: 'Error al obtener los proyectos',
             success: false
@@ -40,7 +47,7 @@ export const getProyectoById = async (req, res) => {
             })
         }
 
-        const proyecto = await modelProyectos.getById(id)
+        const proyecto = await getOrLoad(`id:${id}`, () => modelProyectos.getById(id))
 
         if (!proyecto) {
             return res.status(404).json({
@@ -55,7 +62,8 @@ export const getProyectoById = async (req, res) => {
             success: true,
         });
 
-    } catch (err) { 
+    } catch (err) {
+        console.error(err)
         res.status(500).json({ message: 'Error al obtener el proyecto', success:false });
     }
 }
